@@ -16,6 +16,13 @@
         
     </div>
     <script>
+        function alart(text){
+            const result = document.getElementById("result")
+            const para = document.createElement("div");
+            const outcome = document.createTextNode(text);
+            para.appendChild(outcome);
+            result.appendChild(para);
+        }
         function check(){
             var Fizz = document.getElementById("FizzNum").value;
             var Buzz = document.getElementById("BuzzNum").value;
@@ -23,39 +30,19 @@
             var BuzzNum = parseFloat(Buzz);
             //空欄の場合
             if (FizzNum == "" || BuzzNum == ""){
-                const result = document.getElementById("result")
-                const para = document.createElement("div");
-                const text1 = document.createTextNode("整数を入力してください");
-                para.appendChild(text1);
-                result.appendChild(para);
+                alart("整数を入力してください");
             //整数意外の数値を入力した場合にtrueを返す
             }else if(!Number.isInteger(FizzNum) || !Number.isInteger(BuzzNum)){
-                const result = document.getElementById("result")
-                const para = document.createElement("div");
-                const text1 = document.createTextNode("整数を入力してください");
-                para.appendChild(text1);
-                result.appendChild(para);
+                alart("整数を入力してください");
             }else{
                 //FizzBuzz処理
                 for(let i = 1; i <= 99; i ++){
                     if(i % FizzNum == 0 && i % BuzzNum == 0){
-                        const result = document.getElementById("result")
-                        const para = document.createElement("div");
-                        const text1 = document.createTextNode("FizzBuzz" + i);
-                        para.appendChild(text1);
-                        result.appendChild(para);
+                        alart("FizzBuzz" + i);
                     }else if(i % Fizz == 0){
-                        const result = document.getElementById("result")
-                        const para = document.createElement("div");
-                        const text1 = document.createTextNode("Fizz" + i);
-                        para.appendChild(text1);
-                        result.appendChild(para);
+                        alart("Fizz" + i);
                     }else if(i % Buzz == 0 && i % 3 ==0){
-                        const result = document.getElementById("result")
-                        const para = document.createElement("div");
-                        const text1 = document.createTextNode("Buzz" + i);
-                        para.appendChild(text1);
-                        result.appendChild(para);
+                        alart("Buzz" + i);
                     }
                 };
             };
