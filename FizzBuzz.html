@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FizzBuzz　js課題②</title>
+</head>
+<body>
+    <form action="#" method="get" name="FizzBuzz">
+        <p>FizzNum:<input type="text" id="FizzNum"></p>
+        <p>BizzNum:<input type="text" id="BuzzNum"></p>
+        <input type="button" value="実行" onclick="check()">
+    </form>
+    <div id = "result">
+        <p>【出力】</p>
+        
+    </div>
+    <script>
+        function check(){
+            var Fizz = document.getElementById("FizzNum").value;
+            var Buzz = document.getElementById("BuzzNum").value;
+            var FizzNum = parseFloat(Fizz);
+            var BuzzNum = parseFloat(Buzz);
+            //空欄の場合
+            if (FizzNum == "" || BuzzNum == ""){
+                const result = document.getElementById("result")
+                const para = document.createElement("div");
+                const text1 = document.createTextNode("整数を入力してください");
+                para.appendChild(text1);
+                result.appendChild(para);
+            //整数意外の数値を入力した場合にtrueを返す
+            }else if(!Number.isInteger(FizzNum) || !Number.isInteger(BuzzNum)){
+                const result = document.getElementById("result")
+                const para = document.createElement("div");
+                const text1 = document.createTextNode("整数を入力してください");
+                para.appendChild(text1);
+                result.appendChild(para);
+            }else{
+                //FizzBuzz処理
+                for(let i = 1; i <= 99; i ++){
+                    if(i % FizzNum == 0 && i % BuzzNum == 0){
+                        const result = document.getElementById("result")
+                        const para = document.createElement("div");
+                        const text1 = document.createTextNode("FizzBuzz" + i);
+                        para.appendChild(text1);
+                        result.appendChild(para);
+                    }else if(i % Fizz == 0){
+                        const result = document.getElementById("result")
+                        const para = document.createElement("div");
+                        const text1 = document.createTextNode("Fizz" + i);
+                        para.appendChild(text1);
+                        result.appendChild(para);
+                    }else if(i % Buzz == 0 && i % 3 ==0){
+                        const result = document.getElementById("result")
+                        const para = document.createElement("div");
+                        const text1 = document.createTextNode("Buzz" + i);
+                        para.appendChild(text1);
+                        result.appendChild(para);
+                    }
+                };
+            };
+        };
+    </script>
+</body>
+</html>
