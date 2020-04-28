@@ -7,45 +7,52 @@
 </head>
 <body>
     <form action="#" method="get" name="FizzBuzz">
-        <p>FizzNum:<input type="text" id="FizzNum" placeholder="整数を入力してください"></p>
-        <p>BizzNum:<input type="text" id="BuzzNum" placeholder="整数を入力してください"></p>
-        <input type="button" value="実行" onclick="check()">
+        <p>FizzNum:<input type="text" id="fizz-num" placeholder="整数を入力してください"></p>
+        <p>BizzNum:<input type="text" id="buzz-num" placeholder="整数を入力してください"></p>
+        <input type="button" id="btn" value="実行">
     </form>
     <div id = "result">
         <p>【出力】</p>
         
     </div>
     <script>
-        function alart(text){
+        //クリックしたときに要素を取得
+        const btn = document.getElementById('btn');
+        btn.addEventListener('click',execFizzBuzz, false);
+
+        //エラーかFizzBuzzかの分岐
+        function execFizzBuzz(){
+            const fizz = document.getElementById("fizz-num").value;
+            const buzz = document.getElementById("buzz-num").value;
+            const fizzNum = parseFloat(fizz);
+            const buzzNum = parseFloat(buzz);
+            if (!fizzNum || !buzzNum){
+                //空欄の場合
+                displayResult("整数を入力してください");
+            }else if(!Number.isInteger(fizzNum) || !Number.isInteger(buzzNum)){
+                //整数意外の数値を入力した場合にtrueを返す
+                displayResult("整数を入力してください");
+            }else{
+                //FizzBuzz処理
+                for(let i = 1; i <= 99; i ++){
+                    if(i % fizzNum === 0 && i % buzzNum === 0){
+                        displayResult("FizzBuzz" + i);
+                    }else if(i % fizz === 0){
+                        displayResult("Fizz" + i);
+                    }else if(i % buzz === 0 && i % 3 === 0){
+                        displayResult("Buzz" + i);
+                    }
+                };
+            };
+        };
+
+        //表示処理
+        function displayResult(text){
             const result = document.getElementById("result")
             const para = document.createElement("div");
             const outcome = document.createTextNode(text);
             para.appendChild(outcome);
             result.appendChild(para);
-        }
-        function check(){
-            var Fizz = document.getElementById("FizzNum").value;
-            var Buzz = document.getElementById("BuzzNum").value;
-            var FizzNum = parseFloat(Fizz);
-            var BuzzNum = parseFloat(Buzz);
-            //空欄の場合
-            if (FizzNum == "" || BuzzNum == ""){
-                alart("整数を入力してください");
-            //整数意外の数値を入力した場合にtrueを返す
-            }else if(!Number.isInteger(FizzNum) || !Number.isInteger(BuzzNum)){
-                alart("整数を入力してください");
-            }else{
-                //FizzBuzz処理
-                for(let i = 1; i <= 99; i ++){
-                    if(i % FizzNum == 0 && i % BuzzNum == 0){
-                        alart("FizzBuzz" + i);
-                    }else if(i % Fizz == 0){
-                        alart("Fizz" + i);
-                    }else if(i % Buzz == 0 && i % 3 ==0){
-                        alart("Buzz" + i);
-                    }
-                };
-            };
         };
     </script>
 </body>
